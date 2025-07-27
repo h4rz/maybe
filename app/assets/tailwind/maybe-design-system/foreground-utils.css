@@ -1,63 +1,63 @@
-@utility fg-gray {
+.fg-gray {
   @apply text-gray-500;
-
-  @variant theme-dark {
-    @apply text-gray-400;
-  }
 }
 
-@utility fg-contrast {
+[data-theme="dark"] .fg-gray {
   @apply text-gray-400;
-
-  @variant theme-dark {
-    @apply text-gray-500;
-  }
 }
 
-@utility fg-inverse {
+.fg-contrast {
+  @apply text-gray-400;
+}
+
+[data-theme="dark"] .fg-contrast {
+  @apply text-gray-500;
+}
+
+.fg-inverse {
   @apply text-white;
-
-  @variant theme-dark {
-    @apply text-gray-900;
-  }
 }
 
-@utility fg-primary {
+[data-theme="dark"] .fg-inverse {
   @apply text-gray-900;
-
-  @variant theme-dark {
-    @apply text-white;
-  }
 }
 
-@utility fg-primary-variant {
+.fg-primary {
+  @apply text-gray-900;
+}
+
+[data-theme="dark"] .fg-primary {
+  @apply text-white;
+}
+
+.fg-primary-variant {
   @apply text-gray-800;
-
-  @variant theme-dark {
-    @apply text-gray-50;
-  }
 }
 
-@utility fg-secondary {
+[data-theme="dark"] .fg-primary-variant {
   @apply text-gray-50;
-
-  @variant theme-dark {
-    @apply text-gray-700;
-  }
 }
 
-@utility fg-secondary-variant {
+.fg-secondary {
+  @apply text-gray-50;
+}
+
+[data-theme="dark"] .fg-secondary {
+  @apply text-gray-700;
+}
+
+.fg-secondary-variant {
   @apply text-gray-100;
-
-  @variant theme-dark {
-    @apply text-gray-600;
-  }
 }
 
-@utility fg-subdued {
-  @apply text-gray-400;
+[data-theme="dark"] .fg-secondary-variant {
+  @apply text-gray-600;
+}
 
-  @variant theme-dark {
-    @apply text-gray-500;
-  }
+.fg-subdued {
+  @apply text-gray-400;
+}
+
+[data-theme="dark"] .fg-subdued {
+  @apply text-gray-500;
 }

@@ -1,91 +1,91 @@
-@utility bg-surface {
+.bg-surface {
   @apply bg-gray-50;
-
-  @variant theme-dark {
-    @apply bg-black;
-  }
 }
 
-@utility bg-surface-hover {
+[data-theme="dark"] .bg-surface {
+  @apply bg-black;
+}
+
+.bg-surface-hover {
   @apply bg-gray-100;
-
-  @variant theme-dark {
-    @apply bg-gray-900;
-  }
 }
 
-@utility bg-surface-inset {
+[data-theme="dark"] .bg-surface-hover {
+  @apply bg-gray-900;
+}
+
+.bg-surface-inset {
   @apply bg-gray-100;
-
-  @variant theme-dark {
-    @apply bg-gray-800;
-  }
 }
 
-@utility bg-surface-inset-hover {
-  @apply bg-gray-200;
-
-  @variant theme-dark {
-    @apply bg-gray-800;
-  }
-}
-
-@utility bg-container {
-  @apply bg-white;
-
-  @variant theme-dark {
-    @apply bg-gray-900;
-  }
-}
-
-@utility bg-container-hover {
-  @apply bg-gray-50;
-
-  @variant theme-dark {
-    @apply bg-gray-800;
-  }
-}
-
-@utility bg-container-inset {
-  @apply bg-gray-50;
-
-  @variant theme-dark {
-    @apply bg-gray-800;
-  }
-}
-
-@utility bg-container-inset-hover {
-  @apply bg-gray-100;
-
-  @variant theme-dark {
-    @apply bg-gray-700;
-  }
-}
-
-@utility bg-inverse {
+[data-theme="dark"] .bg-surface-inset {
   @apply bg-gray-800;
-
-  @variant theme-dark {
-    @apply bg-white;
-  }
 }
 
-@utility bg-inverse-hover {
+.bg-surface-inset-hover {
+  @apply bg-gray-200;
+}
+
+[data-theme="dark"] .bg-surface-inset-hover {
+  @apply bg-gray-800;
+}
+
+.bg-container {
+  @apply bg-white;
+}
+
+[data-theme="dark"] .bg-container {
+  @apply bg-gray-900;
+}
+
+.bg-container-hover {
+  @apply bg-gray-50;
+}
+
+[data-theme="dark"] .bg-container-hover {
+  @apply bg-gray-800;
+}
+
+.bg-container-inset {
+  @apply bg-gray-50;
+}
+
+[data-theme="dark"] .bg-container-inset {
+  @apply bg-gray-800;
+}
+
+.bg-container-inset-hover {
+  @apply bg-gray-100;
+}
+
+[data-theme="dark"] .bg-container-inset-hover {
   @apply bg-gray-700;
-
-  @variant theme-dark {
-    @apply bg-gray-100;
-  }
 }
 
-@utility bg-overlay {
+.bg-inverse {
+  @apply bg-gray-800;
+}
+
+[data-theme="dark"] .bg-inverse {
+  @apply bg-white;
+}
+
+.bg-inverse-hover {
+  @apply bg-gray-700;
+}
+
+[data-theme="dark"] .bg-inverse-hover {
+  @apply bg-gray-100;
+}
+
+.bg-overlay {
   background-color: --alpha(var(--color-gray-100) / 50%);
-
-  @variant theme-dark {
-    background-color: var(--color-alpha-black-900);
-  }
 }
 
-@utility bg-loader {
+[data-theme="dark"] .bg-overlay {
+  background-color: var(--color-alpha-black-900);
+}
+
+.bg-loader {
   @apply bg-surface-inset animate-pulse;
 }

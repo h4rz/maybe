@@ -1,39 +1,39 @@
-@utility text-primary {
+.text-primary {
   @apply text-gray-900;
-
-  @variant theme-dark {
-   @apply text-white;
-  }
 }
 
-@utility text-inverse {
+[data-theme="dark"] .text-primary {
   @apply text-white;
-
-  @variant theme-dark {
-    @apply text-gray-900;
-  }
 }
 
-@utility text-secondary {
+.text-inverse {
+  @apply text-white;
+}
+
+[data-theme="dark"] .text-inverse {
+  @apply text-gray-900;
+}
+
+.text-secondary {
   @apply text-gray-500;
-
-  @variant theme-dark {
-    @apply text-gray-400;
-  }
 }
 
-@utility text-subdued {
+[data-theme="dark"] .text-secondary {
   @apply text-gray-400;
-
-  @variant theme-dark {
-    @apply text-gray-600;
-  }
 }
 
-@utility text-link {
-  @apply text-blue-600;
+.text-subdued {
+  @apply text-gray-400;
+}
 
-  @variant theme-dark {
-    @apply text-blue-500;
-  }
+[data-theme="dark"] .text-subdued {
+  @apply text-gray-600;
+}
+
+.text-link {
+  @apply text-blue-600;
+}
+
+[data-theme="dark"] .text-link {
+  @apply text-blue-500;
 }

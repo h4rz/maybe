@@ -1,109 +1,109 @@
 /* Button Backgrounds */
-@utility button-bg-primary {
+.button-bg-primary {
   @apply bg-gray-900;
   /* Maps to fg-primary light */
-
-  @variant theme-dark {
-    @apply bg-white;
-    /* Maps to fg-primary dark */
-  }
 }
 
-@utility button-bg-primary-hover {
+[data-theme="dark"] .button-bg-primary {
+  @apply bg-white;
+  /* Maps to fg-primary dark */
+}
+
+.button-bg-primary-hover {
   @apply bg-gray-800;
   /* Maps to fg-primary-variant light */
-
-  @variant theme-dark {
-    @apply bg-gray-50;
-    /* Maps to fg-primary-variant dark */
-  }
 }
 
-@utility button-bg-secondary {
+[data-theme="dark"] .button-bg-primary-hover {
+  @apply bg-gray-50;
+  /* Maps to fg-primary-variant dark */
+}
+
+.button-bg-secondary {
   @apply bg-gray-50; /* Maps to fg-secondary light */
-
-  @variant theme-dark {
-    @apply bg-gray-700; /* Maps to fg-secondary dark */
-  }
 }
 
-@utility button-bg-secondary-hover {
+[data-theme="dark"] .button-bg-secondary {
+  @apply bg-gray-700; /* Maps to fg-secondary dark */
+}
+
+.button-bg-secondary-hover {
   @apply bg-gray-100; /* Maps to fg-secondary-variant light */
-
-  @variant theme-dark {
-    @apply bg-gray-600; /* Maps to fg-secondary-variant dark */
-  }
 }
 
-@utility button-bg-disabled {
+[data-theme="dark"] .button-bg-secondary-hover {
+  @apply bg-gray-600; /* Maps to fg-secondary-variant dark */
+}
+
+.button-bg-disabled {
   @apply bg-gray-50;
-
-  @variant theme-dark {
-    @apply bg-gray-700;
-  }
 }
 
-@utility button-bg-destructive {
+[data-theme="dark"] .button-bg-disabled {
+  @apply bg-gray-700;
+}
+
+.button-bg-destructive {
   @apply bg-red-500;
-
-  @variant theme-dark {
-    @apply bg-red-400;
-  }
 }
 
-@utility button-bg-destructive-hover {
+[data-theme="dark"] .button-bg-destructive {
+  @apply bg-red-400;
+}
+
+.button-bg-destructive-hover {
   @apply bg-red-600;
-
-  @variant theme-dark {
-    @apply bg-red-500;
-  }
 }
 
-@utility button-bg-ghost-hover {
+[data-theme="dark"] .button-bg-destructive-hover {
+  @apply bg-red-500;
+}
+
+.button-bg-ghost-hover {
   @apply bg-gray-50;
-
-  @variant theme-dark {
-    @apply bg-gray-800 fg-inverse;
-  }
 }
 
-@utility button-bg-outline-hover {
-  @apply bg-gray-100;
+[data-theme="dark"] .button-bg-ghost-hover {
+  @apply bg-gray-800 text-white;
+}
 
-  @variant theme-dark {
-    @apply bg-gray-700;
-  }
+.button-bg-outline-hover {
+  @apply bg-gray-100;
+}
+
+[data-theme="dark"] .button-bg-outline-hover {
+  @apply bg-gray-700;
 }
 
 /* Tab Styles */
-@utility tab-item-active {
+.tab-item-active {
   @apply bg-white;
-
-  @variant theme-dark {
-    @apply bg-gray-700;
-  }
 }
 
-@utility tab-item-hover {
+[data-theme="dark"] .tab-item-active {
+  @apply bg-gray-700;
+}
+
+.tab-item-hover {
   @apply bg-gray-200;
-
-  @variant theme-dark {
-    @apply bg-gray-800;
-  }
 }
 
-@utility tab-bg-group {
+[data-theme="dark"] .tab-item-hover {
+  @apply bg-gray-800;
+}
+
+.tab-bg-group {
   @apply bg-gray-50;
-
-  @variant theme-dark {
-    @apply bg-alpha-black-700;
-  }
 }
 
-@utility bg-nav-indicator {
-  @apply bg-black;
+[data-theme="dark"] .tab-bg-group {
+  @apply bg-gray-800;
+}
 
-  @variant theme-dark {
-    @apply bg-white;
-  }
+.bg-nav-indicator {
+  @apply bg-black;
+}
+
+[data-theme="dark"] .bg-nav-indicator {
+  @apply bg-white;
 }
