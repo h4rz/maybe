@@ -10,7 +10,10 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(bundle exec rails tailwindcss:build:*)",
-      "Bash(timeout 10s bundle exec rails tailwindcss:watch)"
+      "Bash(timeout 10s bundle exec rails tailwindcss:watch)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(docker compose:*)"
     ],
     "deny": []
   }
