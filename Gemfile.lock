@@ -557,14 +557,16 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.7)
     stripe (15.3.0)
-    tailwindcss-rails (3.3.2)
+    tailwindcss-rails (4.3.0)
       railties (>= 7.0.0)
-      tailwindcss-ruby (~> 3.0)
-    tailwindcss-ruby (3.4.17-aarch64-linux)
-    tailwindcss-ruby (3.4.17-arm-linux)
-    tailwindcss-ruby (3.4.17-arm64-darwin)
-    tailwindcss-ruby (3.4.17-x86_64-darwin)
-    tailwindcss-ruby (3.4.17-x86_64-linux)
+      tailwindcss-ruby (~> 4.0)
+    tailwindcss-ruby (4.1.11)
+    tailwindcss-ruby (4.1.11-aarch64-linux-gnu)
+    tailwindcss-ruby (4.1.11-aarch64-linux-musl)
+    tailwindcss-ruby (4.1.11-arm64-darwin)
+    tailwindcss-ruby (4.1.11-x86_64-darwin)
+    tailwindcss-ruby (4.1.11-x86_64-linux-gnu)
+    tailwindcss-ruby (4.1.11-x86_64-linux-musl)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.4.0)
@@ -682,7 +684,7 @@ DEPENDENCIES
   stackprof
   stimulus-rails
   stripe
-  tailwindcss-rails (~> 3.3.1)
+  tailwindcss-rails (~> 4.3.0)
   turbo-rails
   tzinfo-data
   vcr
@@ -695,4 +697,4 @@ RUBY VERSION
    ruby 3.4.4p34
 
 BUNDLED WITH
-   2.6.9
+   2.6.7

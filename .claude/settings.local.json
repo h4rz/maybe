@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tailwindcss.com)",
+      "Bash(git checkout:*)",
+      "Bash(node:*)",
+      "Bash(gem search:*)",
+      "Bash(bundle update:*)",
+      "Bash(npx:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": []
+  }
+}
