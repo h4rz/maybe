@@ -1,0 +1,83 @@
+/* Dark mode overrides for standard Tailwind text classes */
+@layer utilities {
+  /* Dark mode text color overrides */
+  [data-theme="dark"] .text-gray-900 {
+    @apply text-white;
+  }
+
+  [data-theme="dark"] .text-gray-800 {
+    @apply text-gray-100;
+  }
+
+  [data-theme="dark"] .text-gray-700 {
+    @apply text-gray-200;
+  }
+
+  [data-theme="dark"] .text-gray-600 {
+    @apply text-gray-300;
+  }
+
+  [data-theme="dark"] .text-gray-500 {
+    @apply text-gray-400;
+  }
+
+  [data-theme="dark"] .text-gray-400 {
+    @apply text-gray-500;
+  }
+
+  [data-theme="dark"] .text-gray-300 {
+    @apply text-gray-600;
+  }
+
+  [data-theme="dark"] .text-gray-200 {
+    @apply text-gray-700;
+  }
+
+  [data-theme="dark"] .text-gray-100 {
+    @apply text-gray-800;
+  }
+
+  [data-theme="dark"] .text-gray-50 {
+    @apply text-gray-900;
+  }
+
+  /* Dark mode background color overrides */
+  [data-theme="dark"] .bg-white {
+    @apply bg-gray-900;
+  }
+
+  [data-theme="dark"] .bg-gray-50 {
+    @apply bg-gray-800;
+  }
+
+  [data-theme="dark"] .bg-gray-100 {
+    @apply bg-gray-700;
+  }
+
+  [data-theme="dark"] .bg-gray-200 {
+    @apply bg-gray-600;
+  }
+
+  /* Dark mode border color overrides */
+  [data-theme="dark"] .border-gray-200 {
+    @apply border-gray-600;
+  }
+
+  [data-theme="dark"] .border-gray-300 {
+    @apply border-gray-500;
+  }
+
+  /* Hover states for dark mode */
+  [data-theme="dark"] .hover\:bg-gray-50:hover {
+    @apply bg-gray-800;
+  }
+
+  [data-theme="dark"] .hover\:bg-gray-100:hover {
+    @apply bg-gray-700;
+  }
+
+  /* Focus states for dark mode */
+  [data-theme="dark"] .focus\:ring-gray-100:focus {
+    @apply ring-gray-700;
+  }
+}
