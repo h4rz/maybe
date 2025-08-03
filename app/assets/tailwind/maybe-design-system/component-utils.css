@@ -108,4 +108,13 @@
   [data-theme="dark"] .bg-nav-indicator {
     @apply bg-white;
   }
+
+  /* Essential gap utilities for Docker build compatibility */
+  .gap-1 {
+    gap: 0.25rem;
+  }
+
+  .gap-2 {
+    gap: 0.5rem;
+  }
 }
