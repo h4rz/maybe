@@ -1,4 +1,3 @@
-@config "../../../config/tailwind.config.js";
 @import "tailwindcss";
 
 @import "../tailwind/maybe-design-system.css";

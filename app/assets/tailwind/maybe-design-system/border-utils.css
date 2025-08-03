@@ -1,96 +1,98 @@
 /* Custom shadow borders used for surfaces / containers  */
-.shadow-border-xs {
-  box-shadow: var(--shadow-xs), 0px 0px 0px 1px var(--color-alpha-black-50);
-}
+@layer utilities {
+  .shadow-border-xs {
+    box-shadow: var(--shadow-xs), 0px 0px 0px 1px var(--color-alpha-black-50);
+  }
 
-[data-theme="dark"] .shadow-border-xs {
-  box-shadow: var(--shadow-xs), 0px 0px 0px 1px var(--color-alpha-white-50);
-}
+  [data-theme="dark"] .shadow-border-xs {
+    box-shadow: var(--shadow-xs), 0px 0px 0px 1px var(--color-alpha-white-50);
+  }
 
-.shadow-border-sm {
-  box-shadow: var(--shadow-sm), 0px 0px 0px 1px var(--color-alpha-black-50);
-}
+  .shadow-border-sm {
+    box-shadow: var(--shadow-sm), 0px 0px 0px 1px var(--color-alpha-black-50);
+  }
 
-[data-theme="dark"] .shadow-border-sm {
-  box-shadow: var(--shadow-sm), 0px 0px 0px 1px var(--color-alpha-white-50);
-}
+  [data-theme="dark"] .shadow-border-sm {
+    box-shadow: var(--shadow-sm), 0px 0px 0px 1px var(--color-alpha-white-50);
+  }
 
-.shadow-border-md {
-  box-shadow: var(--shadow-md), 0px 0px 0px 1px var(--color-alpha-black-50);
-}
+  .shadow-border-md {
+    box-shadow: var(--shadow-md), 0px 0px 0px 1px var(--color-alpha-black-50);
+  }
 
-[data-theme="dark"] .shadow-border-md {
-  box-shadow: var(--shadow-md), 0px 0px 0px 1px var(--color-alpha-white-50);
-}
+  [data-theme="dark"] .shadow-border-md {
+    box-shadow: var(--shadow-md), 0px 0px 0px 1px var(--color-alpha-white-50);
+  }
 
-.shadow-border-lg {
-  box-shadow: var(--shadow-lg), 0px 0px 0px 1px var(--color-alpha-black-50);
-}
+  .shadow-border-lg {
+    box-shadow: var(--shadow-lg), 0px 0px 0px 1px var(--color-alpha-black-50);
+  }
 
-[data-theme="dark"] .shadow-border-lg {
-  box-shadow: var(--shadow-lg), 0px 0px 0px 1px var(--color-alpha-white-50);
-}
+  [data-theme="dark"] .shadow-border-lg {
+    box-shadow: var(--shadow-lg), 0px 0px 0px 1px var(--color-alpha-white-50);
+  }
 
-.shadow-border-xl {
-  box-shadow: var(--shadow-xl), 0px 0px 0px 1px var(--color-alpha-black-50);
-}
+  .shadow-border-xl {
+    box-shadow: var(--shadow-xl), 0px 0px 0px 1px var(--color-alpha-black-50);
+  }
 
-[data-theme="dark"] .shadow-border-xl {
-  box-shadow: var(--shadow-xl), 0px 0px 0px 1px var(--color-alpha-white-50);
-}
+  [data-theme="dark"] .shadow-border-xl {
+    box-shadow: var(--shadow-xl), 0px 0px 0px 1px var(--color-alpha-white-50);
+  }
 
-.border-primary {
-  @apply border-gray-300;
-}
+  .border-primary {
+    @apply border-gray-300;
+  }
 
-[data-theme="dark"] .border-primary {
-  @apply border-gray-600;
-}
+  [data-theme="dark"] .border-primary {
+    @apply border-gray-600;
+  }
 
-.border-secondary {
-  @apply border-gray-200;
-}
+  .border-secondary {
+    @apply border-gray-200;
+  }
 
-[data-theme="dark"] .border-secondary {
-  @apply border-gray-700;
-}
+  [data-theme="dark"] .border-secondary {
+    @apply border-gray-700;
+  }
 
-.border-tertiary {
-  @apply border-gray-100;
-}
+  .border-tertiary {
+    @apply border-gray-100;
+  }
 
-[data-theme="dark"] .border-tertiary {
-  @apply border-gray-800;
-}
+  [data-theme="dark"] .border-tertiary {
+    @apply border-gray-800;
+  }
 
-.border-divider {
-  @apply border-gray-100;
-}
+  .border-divider {
+    @apply border-gray-100;
+  }
 
-[data-theme="dark"] .border-divider {
-  @apply border-gray-800;
-}
+  [data-theme="dark"] .border-divider {
+    @apply border-gray-800;
+  }
 
-.border-subdued {
-  @apply border-gray-50;
-}
+  .border-subdued {
+    @apply border-gray-50;
+  }
 
-[data-theme="dark"] .border-subdued {
-  @apply border-gray-900;
-}
+  [data-theme="dark"] .border-subdued {
+    @apply border-gray-900;
+  }
 
-.border-solid {
-  @apply border-black;
-}
+  .border-solid {
+    @apply border-black;
+  }
 
-[data-theme="dark"] .border-solid {
-  @apply border-white;
-}
+  [data-theme="dark"] .border-solid {
+    @apply border-white;
+  }
 
-.border-destructive {
-  @apply border-red-500;
-}
+  .border-destructive {
+    @apply border-red-500;
+  }
 
-[data-theme="dark"] .border-destructive {
-  @apply border-red-400;
+  [data-theme="dark"] .border-destructive {
+    @apply border-red-400;
+  }
 }

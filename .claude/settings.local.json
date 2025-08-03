@@ -8,7 +8,9 @@
       "Bash(bundle update:*)",
       "Bash(npx:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(bundle exec rails tailwindcss:build:*)",
+      "Bash(timeout 10s bundle exec rails tailwindcss:watch)"
     ],
     "deny": []
   }
