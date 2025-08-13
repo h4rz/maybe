@@ -23,7 +23,10 @@
       "Bash(psql:*)",
       "Bash(bin/rails:*)",
       "Bash(RAILS_ENV=production SECRET_KEY_BASE=b0bd93813a3a15f59d7ef3fec34a5099495750b471cb6c3f01568ea48b0fb253e8f8ac95b2b741c744c2a1614e73e1570d867ad2a0b4175d1c04994d7fa21fa5 bin/rails assets:precompile)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "WebFetch(domain:www.alphavantage.co)",
+      "WebFetch(domain:twelvedata.com)",
+      "WebFetch(domain:www.exchangerate-api.com)"
     ],
     "deny": []
   }
