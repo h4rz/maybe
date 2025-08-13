@@ -3,6 +3,7 @@ class Setting < RailsSettings::Base
   cache_prefix { "v1" }
 
   field :alpha_vantage_api_key, type: :string, default: ENV["ALPHA_VANTAGE_API_KEY"]
+  field :exchange_rate_api_key, type: :string, default: ENV["EXCHANGE_RATE_API_KEY"]
   field :openai_access_token, type: :string, default: ENV["OPENAI_ACCESS_TOKEN"]
 
   field :require_invite_for_signup, type: :boolean, default: false

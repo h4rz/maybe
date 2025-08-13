@@ -8,6 +8,9 @@ class Settings::HostingsController < ApplicationController
   def show
     alpha_vantage_provider = Provider::Registry.get_provider(:alpha_vantage)
     @alpha_vantage_usage = alpha_vantage_provider&.usage
+    
+    exchange_rate_api_provider = Provider::Registry.get_provider(:exchange_rate_api)
+    @exchange_rate_api_usage = exchange_rate_api_provider&.usage
   end
 
   def update
@@ -23,6 +26,10 @@ class Settings::HostingsController < ApplicationController
       Setting.alpha_vantage_api_key = hosting_params[:alpha_vantage_api_key]
     end
 
+    if hosting_params.key?(:exchange_rate_api_key)
+      Setting.exchange_rate_api_key = hosting_params[:exchange_rate_api_key]
+    end
+
     redirect_to settings_hosting_path, notice: t(".success")
   rescue ActiveRecord::RecordInvalid => error
     flash.now[:alert] = t(".failure")
@@ -36,7 +43,7 @@ class Settings::HostingsController < ApplicationController
 
   private
     def hosting_params
-      params.require(:setting).permit(:require_invite_for_signup, :require_email_confirmation, :alpha_vantage_api_key)
+      params.require(:setting).permit(:require_invite_for_signup, :require_email_confirmation, :alpha_vantage_api_key, :exchange_rate_api_key)
     end
 
     def ensure_admin

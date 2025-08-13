@@ -7,13 +7,25 @@ class Settings::HostingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     sign_in users(:family_admin)
 
-    @provider = mock
-    Provider::Registry.stubs(:get_provider).with(:alpha_vantage).returns(@provider)
-    @usage_response = provider_success_response(
+    @alpha_vantage_provider = mock
+    @exchange_rate_api_provider = mock
+    Provider::Registry.stubs(:get_provider).with(:alpha_vantage).returns(@alpha_vantage_provider)
+    Provider::Registry.stubs(:get_provider).with(:exchange_rate_api).returns(@exchange_rate_api_provider)
+    
+    @alpha_vantage_usage_response = provider_success_response(
       OpenStruct.new(
         used: 10,
-        limit: 100,
-        utilization: 10,
+        limit: 25,
+        utilization: 40,
+        plan: "free",
+      )
+    )
+    
+    @exchange_rate_api_usage_response = provider_success_response(
+      OpenStruct.new(
+        used: 50,
+        limit: 1500,
+        utilization: 3.3,
         plan: "free",
       )
     )
@@ -30,7 +42,8 @@ class Settings::HostingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit when self hosting is enabled" do
-    @provider.expects(:usage).returns(@usage_response)
+    @alpha_vantage_provider.expects(:usage).returns(@alpha_vantage_usage_response)
+    @exchange_rate_api_provider.expects(:usage).returns(@exchange_rate_api_usage_response)
 
     with_self_hosting do
       get settings_hosting_url
@@ -38,11 +51,19 @@ class Settings::HostingsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "can update settings when self hosting is enabled" do
+  test "can update alpha vantage settings when self hosting is enabled" do
     with_self_hosting do
       patch settings_hosting_url, params: { setting: { alpha_vantage_api_key: "1234567890" } }
 
       assert_equal "1234567890", Setting.alpha_vantage_api_key
+    end
+  end
+
+  test "can update exchange rate api settings when self hosting is enabled" do
+    with_self_hosting do
+      patch settings_hosting_url, params: { setting: { exchange_rate_api_key: "test_api_key_123" } }
+
+      assert_equal "test_api_key_123", Setting.exchange_rate_api_key
     end
   end
 
