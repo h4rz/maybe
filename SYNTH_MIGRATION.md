@@ -5,15 +5,17 @@
 Synth Finance API is no longer available, so Maybe Finance has been migrated to use free alternative APIs:
 - **ExchangeRate-API**: Primary provider for exchange rates (higher limits, more currencies)
 - **Alpha Vantage**: Provider for securities data and exchange rate fallback
+- **Logo.dev**: Provider for company logos (replaces deprecated Clearbit)
 
 ## What Changed
 
 - **Exchange Rate Provider**: Synth Finance → ExchangeRate-API (primary) + Alpha Vantage (fallback)
 - **Securities Provider**: Synth Finance → Alpha Vantage
+- **Logo Provider**: None → Logo.dev (company logos)
 - **Environment Variables**: 
-  - `SYNTH_API_KEY` → `EXCHANGE_RATE_API_KEY` + `ALPHA_VANTAGE_API_KEY`
+  - `SYNTH_API_KEY` → `EXCHANGE_RATE_API_KEY` + `ALPHA_VANTAGE_API_KEY` + `LOGO_DEV_API_KEY`
 - **Settings Fields**: 
-  - `synth_api_key` → `exchange_rate_api_key` + `alpha_vantage_api_key`
+  - `synth_api_key` → `exchange_rate_api_key` + `alpha_vantage_api_key` + `logo_dev_api_key`
 
 ## Migration Steps
 
@@ -30,6 +32,12 @@ Synth Finance API is no longer available, so Maybe Finance has been migrated to 
 2. Sign up for a free account
 3. Get your API key (free tier: 25 requests/day, 5 requests/minute)
 
+#### Logo.dev (Optional for Company Logos)
+1. Visit [Logo.dev](https://logo.dev)
+2. Sign up for a free account or use without API key
+3. Get your API key (free tier: 5,000 requests/month, unauthenticated: 100 requests/month)
+4. **Note**: Works without API key but with lower limits
+
 ### 2. Update Environment Variables
 Replace your Synth API key with the new providers:
 
@@ -40,6 +48,7 @@ unset SYNTH_API_KEY
 # Add new variables
 export EXCHANGE_RATE_API_KEY=your_exchange_rate_api_key_here  # Optional
 export ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key_here     # Required
+export LOGO_DEV_API_KEY=your_logo_dev_api_key_here           # Optional
 ```
 
 Or update your `.env` file:
@@ -50,6 +59,7 @@ SYNTH_API_KEY=old_key
 # New
 EXCHANGE_RATE_API_KEY=your_exchange_rate_api_key_here  # Optional for higher limits
 ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key_here     # Required for securities
+LOGO_DEV_API_KEY=your_logo_dev_api_key_here           # Optional for company logos
 ```
 
 ### 3. Update Settings (Self-Hosted)
@@ -58,6 +68,7 @@ If you were using the Settings page to configure your API keys:
 2. Remove the old Synth API key
 3. Enter your ExchangeRate-API key (optional, for higher exchange rate limits)
 4. Enter your Alpha Vantage API key (required for securities data)
+5. Enter your Logo.dev API key (optional, for company logos with higher limits)
 
 ## Provider Details
 
@@ -74,11 +85,23 @@ If you were using the Settings page to configure your API keys:
 - **Free Tier**: 25 requests/day, 5 requests/minute
 - **Coverage**: Primarily US markets, major global stocks
 - **Historical Data**: Available for stocks and forex
+- **Logo Integration**: Now includes company logos via Logo.dev
 - **Limitations vs Synth**:
   - No exchange operating MIC codes
   - Lower rate limits than Synth
-  - No company logos
   - Primarily US-focused
+
+### Logo.dev
+- **Purpose**: Company logos for securities
+- **Free Tier**: 5,000 requests/month with API key, 100/month without
+- **Coverage**: Millions of company logos via domain matching
+- **Integration**: Automatic logo fetching for security searches and info
+- **Fallback**: Works without API key (rate limited)
+
+### New Features
+- **Logo Backfill**: `rake securities:backfill_logos` to add logos to existing securities
+- **Individual Logo Update**: `rake securities:update_logo[AAPL]` to update specific securities
+- **Logo Preview**: `rake securities:preview_logo_backfill` to preview what would be updated
 
 ### Deprecated Features
 - **Securities Rake Task**: `rake securities:backfill_exchange_mic` is disabled since Alpha Vantage doesn't provide exchange MIC data
@@ -90,6 +113,7 @@ If you were using the Settings page to configure your API keys:
 - ✅ Settings page integration
 - ✅ All existing interfaces and APIs
 - ✅ **New**: Automatic provider fallback for redundancy
+- ✅ **New**: Company logos for securities via Logo.dev integration
 
 ## Benefits of New Setup
 - ✅ **Optimized Usage**: Current rates use unlimited open access, API quota only for historical data
@@ -97,9 +121,11 @@ If you were using the Settings page to configure your API keys:
 - ✅ **Higher Effective Limits**: Unlimited current rates + 1,500 historical requests/month
 - ✅ **Redundancy**: Automatic fallback between providers
 - ✅ **Cost**: Completely free tiers available
-- ✅ **Reliability**: Two established providers instead of one
+- ✅ **Reliability**: Three established providers instead of one
 - ✅ **Global Coverage**: Better currency coverage with ExchangeRate-API
+- ✅ **Company Logos**: Logo.dev provides millions of company logos
 - ✅ **No shutdown risk**: Multiple providers reduce single-point-of-failure
+- ✅ **Enhanced UX**: Securities now include company logos for better identification
 
 ## Troubleshooting
 
@@ -122,8 +148,11 @@ Alpha Vantage doesn't provide exchange operating MIC codes, so:
 - New securities won't have MIC data populated
 - This doesn't affect price fetching or basic functionality
 
-### No Logo URLs
-Company logos won't be available for new securities since Alpha Vantage doesn't provide them.
+### Company Logos Available
+Company logos are now available via Logo.dev integration:
+- **New securities**: Automatically get logos during search and info fetching
+- **Existing securities**: Use `rails securities:backfill_logos` to add logos
+- **Fallback**: Works without API key but with lower rate limits
 
 ## Testing Your Setup
 
@@ -136,6 +165,10 @@ exchange_provider.healthy?  # Should return true
 # Test Alpha Vantage
 alpha_provider = Provider::Registry.get_provider(:alpha_vantage)
 alpha_provider.healthy?     # Should return true
+
+# Test Logo.dev
+logo_provider = Provider::Registry.get_provider(:logo_dev)
+logo_provider.healthy?      # Should return true
 
 # Test primary provider selection
 primary = Provider::Registry.primary_exchange_rate_provider
@@ -154,4 +187,30 @@ puts "7 days ago: 1 USD = #{historical_rate.data.rate} EUR"
 1. Go to Settings → Self-Hosting
 2. **ExchangeRate-API section**: Should show "free (optimized)" plan if API key configured
 3. **Alpha Vantage section**: Should show usage for securities data
-4. **Current behavior**: Both providers working with smart quota usage
+4. **Logo.dev section**: Should show usage for logo fetching
+5. **Current behavior**: All providers working with smart quota usage
+
+### Logo Functionality Test
+```ruby
+# Test logo fetching by symbol
+logo_provider = Provider::Registry.get_provider(:logo_dev)
+logo_response = logo_provider.fetch_logo_url(symbol: "AAPL")
+puts "Apple logo: #{logo_response.data}" if logo_response.success?
+
+# Test Alpha Vantage with logo integration
+alpha_provider = Provider::Registry.get_provider(:alpha_vantage)
+securities = alpha_provider.search_securities("Apple").data
+puts "First result logo: #{securities.first.logo_url}" if securities.any?
+```
+
+### Backfill Existing Securities with Logos
+```bash
+# Preview what would be updated
+bundle exec rails securities:preview_logo_backfill
+
+# Run the backfill (processes in batches with rate limiting)
+bundle exec rails securities:backfill_logos
+
+# Update a specific security
+bundle exec rails securities:update_logo[AAPL]
+```

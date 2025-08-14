@@ -26,7 +26,10 @@
       "Bash(rm:*)",
       "WebFetch(domain:www.alphavantage.co)",
       "WebFetch(domain:twelvedata.com)",
-      "WebFetch(domain:www.exchangerate-api.com)"
+      "WebFetch(domain:www.exchangerate-api.com)",
+      "WebFetch(domain:docs.logo.dev)",
+      "Bash(ruby test:*)",
+      "Bash(bundle exec rails runner:*)"
     ],
     "deny": []
   }

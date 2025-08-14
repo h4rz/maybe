@@ -74,6 +74,13 @@ class Provider::Registry
         Provider::Github.new
       end
 
+      def logo_dev
+        api_key = ENV.fetch("LOGO_DEV_API_KEY", Setting.logo_dev_api_key)
+        
+        # Logo.dev works without API key but with rate limits
+        Provider::LogoDev.new(api_key)
+      end
+
       def openai
         access_token = ENV.fetch("OPENAI_ACCESS_TOKEN", Setting.openai_access_token)
 

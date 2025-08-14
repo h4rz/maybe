@@ -28,6 +28,13 @@ en:
         placeholder: Enter your ExchangeRate-API key here (optional for open access)
         plan: "%{plan} plan"
         title: ExchangeRate-API Settings
+      logo_dev_settings:
+        api_calls_used: "%{used} / %{limit} API calls used (%{percentage})"
+        description: "Input the API key provided by Logo.dev (optional, works with rate limits without key)"
+        label: API Key
+        placeholder: Enter your Logo.dev API key here (optional for higher limits)
+        plan: "%{plan} plan"
+        title: Logo.dev Settings
       alpha_vantage_settings:
         api_calls_used: "%{used} / %{limit} API calls used (%{percentage})"
         description: "Input the API key provided by Alpha Vantage (free tier: 25 requests/day)"

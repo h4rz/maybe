@@ -143,10 +143,16 @@ class Provider::AlphaVantage < Provider
       best_matches = data.dig("bestMatches") || []
 
       securities = best_matches.map do |match|
+        symbol = match["1. symbol"]
+        company_name = match["2. name"]
+        
+        # Fetch logo from Logo.dev provider
+        logo_url = fetch_logo_for_security(symbol: symbol, company_name: company_name)
+        
         Security.new(
-          symbol: match["1. symbol"],
-          name: match["2. name"],
-          logo_url: nil, # Alpha Vantage doesn't provide logos
+          symbol: symbol,
+          name: company_name,
+          logo_url: logo_url,
           exchange_operating_mic: nil, # Not provided by Alpha Vantage
           country_code: match["4. region"]
         )
@@ -183,11 +189,14 @@ class Provider::AlphaVantage < Provider
         raise Error.new("No security info found for symbol #{symbol}")
       end
 
+      # Fetch logo from Logo.dev provider
+      logo_url = fetch_logo_for_security(symbol: symbol, company_name: nil)
+      
       SecurityInfo.new(
         symbol: symbol,
         name: quote["01. symbol"], # Alpha Vantage doesn't provide company name in quote
         links: nil,
-        logo_url: nil,
+        logo_url: logo_url,
         description: nil,
         kind: "stock", # Default to stock
         exchange_operating_mic: exchange_operating_mic
@@ -273,6 +282,23 @@ class Provider::AlphaVantage < Provider
 
         faraday.response :raise_error
         faraday.headers["User-Agent"] = "Maybe Finance App"
+      end
+    end
+
+    def fetch_logo_for_security(symbol:, company_name: nil)
+      logo_provider = Provider::Registry.get_provider(:logo_dev)
+      return nil unless logo_provider
+      
+      begin
+        logo_response = logo_provider.fetch_logo_url(
+          symbol: symbol,
+          company_name: company_name
+        )
+        
+        logo_response.success? ? logo_response.data : nil
+      rescue => e
+        Rails.logger.warn("#{self.class.name} failed to fetch logo for #{symbol}: #{e.message}")
+        nil
       end
     end
 end
