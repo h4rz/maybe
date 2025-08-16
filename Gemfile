@@ -16,7 +16,7 @@ gem "bootsnap", require: false
 # Assets
 gem "importmap-rails"
 gem "propshaft"
-gem "tailwindcss-rails", "~> 3.3.1"
+gem "tailwindcss-rails", "~> 4.3.0"
 gem "lucide-rails", github: "maybe-finance/lucide-rails"
 
 # Hotwire + UI

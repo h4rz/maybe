@@ -1,0 +1,51 @@
+<div class="space-y-4">
+  <div>
+    <h2 class="font-medium mb-1"><%= t(".title") %></h2>
+    <% if ENV["EXCHANGE_RATE_API_KEY"].present? %>
+      <p class="text-sm text-secondary">You have successfully configured your ExchangeRate-API key through the EXCHANGE_RATE_API_KEY environment variable.</p>
+    <% else %>
+      <p class="text-secondary text-sm mb-4"><%= t(".description") %></p>
+    <% end %>
+  </div>
+
+  <%= styled_form_with model: Setting.new,
+                       url: settings_hosting_path,
+                       method: :patch,
+                       data: {
+                         controller: "auto-submit-form",
+                         "auto-submit-form-trigger-event-value": "blur"
+                       } do |form| %>
+    <%= form.text_field :exchange_rate_api_key,
+                        label: t(".label"),
+                        type: "password",
+                        placeholder: t(".placeholder"),
+                        value: ENV.fetch("EXCHANGE_RATE_API_KEY", Setting.exchange_rate_api_key),
+                        disabled: ENV["EXCHANGE_RATE_API_KEY"].present?,
+                        container_class: @exchange_rate_api_usage.present? && !@exchange_rate_api_usage.success? ? "border-red-500" : "",
+                        data: { "auto-submit-form-target": "auto" } %>
+  <% end %>
+
+  <% if @exchange_rate_api_usage.present? && @exchange_rate_api_usage.success? %>
+    <div class="space-y-4">
+      <div class="space-y-2">
+        <p class="text-sm text-secondary">
+          <%= t(".api_calls_used",
+                used: number_with_delimiter(@exchange_rate_api_usage.data.used),
+                limit: @exchange_rate_api_usage.data.limit == Float::INFINITY ? "unlimited" : number_with_delimiter(@exchange_rate_api_usage.data.limit),
+                percentage: @exchange_rate_api_usage.data.limit == Float::INFINITY ? "0" : number_to_percentage(@exchange_rate_api_usage.data.utilization, precision: 1)) %>
+        </p>
+        <% if @exchange_rate_api_usage.data.limit != Float::INFINITY %>
+          <div class="w-52 h-1.5 bg-gray-100 rounded-2xl">
+            <div class="h-full bg-blue-500 rounded-2xl"
+                 style="width: <%= [@exchange_rate_api_usage.data.utilization, 2].max %>%;"></div>
+          </div>
+        <% end %>
+      </div>
+      <div class="bg-gray-100 rounded-md px-1.5 py-0.5 w-fit">
+        <p class="text-xs font-medium text-secondary uppercase">
+          <%= t(".plan", plan: @exchange_rate_api_usage.data.plan) %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

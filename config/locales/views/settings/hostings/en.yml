@@ -21,13 +21,27 @@ en:
         confirm_clear_cache:
           title: Clear data cache?
           body: Are you sure you want to clear the data cache? This will remove all exchange rates, security prices, account balances, and other data. This action cannot be undone.
-      synth_settings:
+      exchange_rate_api_settings:
         api_calls_used: "%{used} / %{limit} API calls used (%{percentage})"
-        description: Input the API key provided by Synth
+        description: "Input the API key provided by ExchangeRate-API (free tier: 1,500 requests/month, open access also available)"
         label: API Key
-        placeholder: Enter your API key here
+        placeholder: Enter your ExchangeRate-API key here (optional for open access)
         plan: "%{plan} plan"
-        title: Synth Settings
+        title: ExchangeRate-API Settings
+      logo_dev_settings:
+        api_calls_used: "%{used} / %{limit} API calls used (%{percentage})"
+        description: "Input the API key provided by Logo.dev (optional, works with rate limits without key)"
+        label: API Key
+        placeholder: Enter your Logo.dev API key here (optional for higher limits)
+        plan: "%{plan} plan"
+        title: Logo.dev Settings
+      alpha_vantage_settings:
+        api_calls_used: "%{used} / %{limit} API calls used (%{percentage})"
+        description: "Input the API key provided by Alpha Vantage (free tier: 25 requests/day)"
+        label: API Key
+        placeholder: Enter your Alpha Vantage API key here
+        plan: "%{plan} plan"
+        title: Alpha Vantage Settings
       update:
         failure: Invalid setting value
         success: Settings updated

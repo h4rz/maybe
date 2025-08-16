@@ -39,7 +39,7 @@
 .combobox {
   .hw-combobox__main__wrapper,
   .hw-combobox__input {
-    @apply bg-container text-primary w-full;
+    @apply bg-white text-gray-900 w-full;
   }
 
   .hw-combobox__main__wrapper {
@@ -55,7 +55,7 @@
   }
   
   .hw-combobox__option {
-    @apply bg-container hover:bg-container-hover;
+    @apply bg-white hover:bg-gray-50;
   }
 
   .hw_combobox__pagination__wrapper {
@@ -74,22 +74,22 @@
 
 /* Typography */
 .prose {
-  @apply max-w-none text-primary; 
+  @apply max-w-none text-gray-900; 
 
   a {
-    @apply text-link;
+    @apply text-blue-600;
   }
 
   h2 {
-    @apply text-xl font-medium text-primary;
+    @apply text-xl font-medium text-gray-900;
   }
 
   h3 {
-    @apply text-lg font-medium text-primary;
+    @apply text-lg font-medium text-gray-900;
   }
 
   li {
-    @apply m-0 text-primary;
+    @apply m-0 text-gray-900;
   }
 
   details {
@@ -123,7 +123,7 @@
   @apply break-words;
 
   p, li {
-    @apply text-sm text-primary;
+    @apply text-sm text-gray-900;
   }
 
   scrollbar-width: thin;

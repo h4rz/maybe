@@ -1,109 +1,120 @@
 /* Button Backgrounds */
-.button-bg-primary {
-  @apply bg-gray-900;
-  /* Maps to fg-primary light */
-}
+@layer utilities {
+  .button-bg-primary {
+    @apply bg-gray-900;
+    /* Maps to fg-primary light */
+  }
 
-[data-theme="dark"] .button-bg-primary {
-  @apply bg-white;
-  /* Maps to fg-primary dark */
-}
+  [data-theme="dark"] .button-bg-primary {
+    @apply bg-white;
+    /* Maps to fg-primary dark */
+  }
 
-.button-bg-primary-hover {
-  @apply bg-gray-800;
-  /* Maps to fg-primary-variant light */
-}
+  .button-bg-primary-hover {
+    @apply bg-gray-800;
+    /* Maps to fg-primary-variant light */
+  }
 
-[data-theme="dark"] .button-bg-primary-hover {
-  @apply bg-gray-50;
-  /* Maps to fg-primary-variant dark */
-}
+  [data-theme="dark"] .button-bg-primary-hover {
+    @apply bg-gray-50;
+    /* Maps to fg-primary-variant dark */
+  }
 
-.button-bg-secondary {
-  @apply bg-gray-50; /* Maps to fg-secondary light */
-}
+  .button-bg-secondary {
+    @apply bg-gray-50; /* Maps to fg-secondary light */
+  }
 
-[data-theme="dark"] .button-bg-secondary {
-  @apply bg-gray-700; /* Maps to fg-secondary dark */
-}
+  [data-theme="dark"] .button-bg-secondary {
+    @apply bg-gray-700; /* Maps to fg-secondary dark */
+  }
 
-.button-bg-secondary-hover {
-  @apply bg-gray-100; /* Maps to fg-secondary-variant light */
-}
+  .button-bg-secondary-hover {
+    @apply bg-gray-100; /* Maps to fg-secondary-variant light */
+  }
 
-[data-theme="dark"] .button-bg-secondary-hover {
-  @apply bg-gray-600; /* Maps to fg-secondary-variant dark */
-}
+  [data-theme="dark"] .button-bg-secondary-hover {
+    @apply bg-gray-600; /* Maps to fg-secondary-variant dark */
+  }
 
-.button-bg-disabled {
-  @apply bg-gray-50;
-}
+  .button-bg-disabled {
+    @apply bg-gray-50;
+  }
 
-[data-theme="dark"] .button-bg-disabled {
-  @apply bg-gray-700;
-}
+  [data-theme="dark"] .button-bg-disabled {
+    @apply bg-gray-700;
+  }
 
-.button-bg-destructive {
-  @apply bg-red-500;
-}
+  .button-bg-destructive {
+    @apply bg-red-500;
+  }
 
-[data-theme="dark"] .button-bg-destructive {
-  @apply bg-red-400;
-}
+  [data-theme="dark"] .button-bg-destructive {
+    @apply bg-red-400;
+  }
 
-.button-bg-destructive-hover {
-  @apply bg-red-600;
-}
+  .button-bg-destructive-hover {
+    @apply bg-red-600;
+  }
 
-[data-theme="dark"] .button-bg-destructive-hover {
-  @apply bg-red-500;
-}
+  [data-theme="dark"] .button-bg-destructive-hover {
+    @apply bg-red-500;
+  }
 
-.button-bg-ghost-hover {
-  @apply bg-gray-50;
-}
+  .button-bg-ghost-hover {
+    @apply bg-gray-50;
+  }
 
-[data-theme="dark"] .button-bg-ghost-hover {
-  @apply bg-gray-800 text-white;
-}
+  [data-theme="dark"] .button-bg-ghost-hover {
+    @apply bg-gray-800 text-white;
+  }
 
-.button-bg-outline-hover {
-  @apply bg-gray-100;
-}
+  .button-bg-outline-hover {
+    @apply bg-gray-100;
+  }
 
-[data-theme="dark"] .button-bg-outline-hover {
-  @apply bg-gray-700;
-}
+  [data-theme="dark"] .button-bg-outline-hover {
+    @apply bg-gray-700;
+  }
 
-/* Tab Styles */
-.tab-item-active {
-  @apply bg-white;
-}
+  /* Tab Styles */
+  .tab-item-active {
+    @apply bg-white;
+  }
 
-[data-theme="dark"] .tab-item-active {
-  @apply bg-gray-700;
-}
+  [data-theme="dark"] .tab-item-active {
+    @apply bg-gray-700;
+  }
 
-.tab-item-hover {
-  @apply bg-gray-200;
-}
+  .tab-item-hover {
+    @apply bg-gray-200;
+  }
 
-[data-theme="dark"] .tab-item-hover {
-  @apply bg-gray-800;
-}
+  [data-theme="dark"] .tab-item-hover {
+    @apply bg-gray-800;
+  }
 
-.tab-bg-group {
-  @apply bg-gray-50;
-}
+  .tab-bg-group {
+    @apply bg-gray-50;
+  }
 
-[data-theme="dark"] .tab-bg-group {
-  @apply bg-gray-800;
-}
+  [data-theme="dark"] .tab-bg-group {
+    @apply bg-gray-800;
+  }
 
-.bg-nav-indicator {
-  @apply bg-black;
-}
+  .bg-nav-indicator {
+    @apply bg-black;
+  }
 
-[data-theme="dark"] .bg-nav-indicator {
-  @apply bg-white;
+  [data-theme="dark"] .bg-nav-indicator {
+    @apply bg-white;
+  }
+
+  /* Essential gap utilities for Docker build compatibility */
+  .gap-1 {
+    gap: 0.25rem;
+  }
+
+  .gap-2 {
+    gap: 0.5rem;
+  }
 }

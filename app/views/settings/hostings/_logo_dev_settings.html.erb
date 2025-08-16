@@ -1,0 +1,51 @@
+<div class="space-y-4">
+  <div>
+    <h2 class="font-medium mb-1"><%= t(".title") %></h2>
+    <% if ENV["LOGO_DEV_API_KEY"].present? %>
+      <p class="text-sm text-secondary">You have successfully configured your Logo.dev API key through the LOGO_DEV_API_KEY environment variable.</p>
+    <% else %>
+      <p class="text-secondary text-sm mb-4"><%= t(".description") %></p>
+    <% end %>
+  </div>
+
+  <%= styled_form_with model: Setting.new,
+                       url: settings_hosting_path,
+                       method: :patch,
+                       data: {
+                         controller: "auto-submit-form",
+                         "auto-submit-form-trigger-event-value": "blur"
+                       } do |form| %>
+    <%= form.text_field :logo_dev_api_key,
+                        label: t(".label"),
+                        type: "password",
+                        placeholder: t(".placeholder"),
+                        value: ENV.fetch("LOGO_DEV_API_KEY", Setting.logo_dev_api_key),
+                        disabled: ENV["LOGO_DEV_API_KEY"].present?,
+                        container_class: @logo_dev_usage.present? && !@logo_dev_usage.success? ? "border-red-500" : "",
+                        data: { "auto-submit-form-target": "auto" } %>
+  <% end %>
+
+  <% if @logo_dev_usage.present? && @logo_dev_usage.success? %>
+    <div class="space-y-4">
+      <div class="space-y-2">
+        <p class="text-sm text-secondary">
+          <%= t(".api_calls_used",
+                used: number_with_delimiter(@logo_dev_usage.data.used),
+                limit: @logo_dev_usage.data.limit == Float::INFINITY ? "unlimited" : number_with_delimiter(@logo_dev_usage.data.limit),
+                percentage: @logo_dev_usage.data.limit == Float::INFINITY ? "0" : number_to_percentage(@logo_dev_usage.data.utilization, precision: 1)) %>
+        </p>
+        <% if @logo_dev_usage.data.limit != Float::INFINITY %>
+          <div class="w-52 h-1.5 bg-gray-100 rounded-2xl">
+            <div class="h-full bg-purple-500 rounded-2xl"
+                 style="width: <%= [@logo_dev_usage.data.utilization, 2].max %>%;"></div>
+          </div>
+        <% end %>
+      </div>
+      <div class="bg-gray-100 rounded-md px-1.5 py-0.5 w-fit">
+        <p class="text-xs font-medium text-secondary uppercase">
+          <%= t(".plan", plan: @logo_dev_usage.data.plan) %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

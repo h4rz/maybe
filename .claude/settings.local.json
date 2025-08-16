@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tailwindcss.com)",
+      "Bash(git checkout:*)",
+      "Bash(node:*)",
+      "Bash(gem search:*)",
+      "Bash(bundle update:*)",
+      "Bash(npx:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(bundle exec rails tailwindcss:build:*)",
+      "Bash(timeout 10s bundle exec rails tailwindcss:watch)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker system prune:*)",
+      "Bash(timeout 10m docker compose up -d --build db redis)",
+      "Bash(SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile)",
+      "Bash(docker container:*)",
+      "Bash(ruby --version)",
+      "Bash(redis-server:*)",
+      "Bash(psql:*)",
+      "Bash(bin/rails:*)",
+      "Bash(RAILS_ENV=production SECRET_KEY_BASE=b0bd93813a3a15f59d7ef3fec34a5099495750b471cb6c3f01568ea48b0fb253e8f8ac95b2b741c744c2a1614e73e1570d867ad2a0b4175d1c04994d7fa21fa5 bin/rails assets:precompile)",
+      "Bash(rm:*)",
+      "WebFetch(domain:www.alphavantage.co)",
+      "WebFetch(domain:twelvedata.com)",
+      "WebFetch(domain:www.exchangerate-api.com)",
+      "WebFetch(domain:docs.logo.dev)",
+      "Bash(ruby test:*)",
+      "Bash(bundle exec rails runner:*)"
+    ],
+    "deny": []
+  }
+}

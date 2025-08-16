@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
 namespace :securities do
-  desc "Backfill exchange_operating_mic for securities using Synth API"
+  desc "Backfill exchange_operating_mic for securities using Synth API (deprecated - Synth no longer available)"
   task backfill_exchange_mic: :environment do
-    puts "Starting exchange_operating_mic backfill..."
+    puts "DEPRECATED: This task was designed for Synth API which is no longer available."
+    puts "Alpha Vantage does not provide exchange MIC data in the same format."
+    puts "This task has been disabled."
+    exit 1
 
-    api_key = Rails.application.config.app_mode.self_hosted? ? Setting.synth_api_key : ENV["SYNTH_API_KEY"]
-    unless api_key.present?
-      puts "ERROR: No Synth API key found. Please set SYNTH_API_KEY env var or configure it in Settings for self-hosted mode."
-      exit 1
-    end
+    # Original Synth-specific code preserved but disabled
+    # api_key = Rails.application.config.app_mode.self_hosted? ? Setting.synth_api_key : ENV["SYNTH_API_KEY"]
+    # unless api_key.present?
+    #   puts "ERROR: No Synth API key found. Please set SYNTH_API_KEY env var or configure it in Settings for self-hosted mode."
+    #   exit 1
+    # end
 
     securities = Security.where(exchange_operating_mic: nil).where.not(ticker: nil)
     total = securities.count
