@@ -22,6 +22,12 @@ class Provider::Registry
       region.to_sym == :us ? plaid_us : plaid_eu
     end
 
+    # Get the primary exchange rate provider with fallback logic
+    def primary_exchange_rate_provider
+      # Priority: ExchangeRate-API (higher limits) -> Alpha Vantage (fallback)
+      exchange_rate_api || alpha_vantage
+    end
+
     private
       def stripe
         secret_key = ENV["STRIPE_SECRET_KEY"]
@@ -32,12 +38,20 @@ class Provider::Registry
         Provider::Stripe.new(secret_key:, webhook_secret:)
       end
 
-      def synth
-        api_key = ENV.fetch("SYNTH_API_KEY", Setting.synth_api_key)
+      def alpha_vantage
+        api_key = ENV.fetch("ALPHA_VANTAGE_API_KEY", Setting.alpha_vantage_api_key)
 
         return nil unless api_key.present?
 
-        Provider::Synth.new(api_key)
+        Provider::AlphaVantage.new(api_key)
+      end
+
+      def exchange_rate_api
+        api_key = ENV.fetch("EXCHANGE_RATE_API_KEY", Setting.exchange_rate_api_key)
+
+        # ExchangeRate-API has an open access tier that doesn't require an API key
+        # But we'll still allow nil key for open access
+        Provider::ExchangeRateApi.new(api_key)
       end
 
       def plaid_us
@@ -58,6 +72,13 @@ class Provider::Registry
 
       def github
         Provider::Github.new
+      end
+
+      def logo_dev
+        api_key = ENV.fetch("LOGO_DEV_API_KEY", Setting.logo_dev_api_key)
+        
+        # Logo.dev works without API key but with rate limits
+        Provider::LogoDev.new(api_key)
       end
 
       def openai
@@ -92,13 +113,13 @@ class Provider::Registry
     def available_providers
       case concept
       when :exchange_rates
-        %i[synth]
+        %i[exchange_rate_api alpha_vantage]
       when :securities
-        %i[synth]
+        %i[alpha_vantage]
       when :llm
         %i[openai]
       else
-        %i[synth plaid_us plaid_eu github openai]
+        %i[exchange_rate_api alpha_vantage plaid_us plaid_eu github openai]
       end
     end
 end

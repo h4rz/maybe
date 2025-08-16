@@ -1,63 +1,65 @@
-.fg-gray {
-  @apply text-gray-500;
-}
+@layer utilities {
+  .fg-gray {
+    @apply text-gray-500;
+  }
 
-[data-theme="dark"] .fg-gray {
-  @apply text-gray-400;
-}
+  [data-theme="dark"] .fg-gray {
+    @apply text-gray-400;
+  }
 
-.fg-contrast {
-  @apply text-gray-400;
-}
+  .fg-contrast {
+    @apply text-gray-400;
+  }
 
-[data-theme="dark"] .fg-contrast {
-  @apply text-gray-500;
-}
+  [data-theme="dark"] .fg-contrast {
+    @apply text-gray-500;
+  }
 
-.fg-inverse {
-  @apply text-white;
-}
+  .fg-inverse {
+    @apply text-white;
+  }
 
-[data-theme="dark"] .fg-inverse {
-  @apply text-gray-900;
-}
+  [data-theme="dark"] .fg-inverse {
+    @apply text-gray-900;
+  }
 
-.fg-primary {
-  @apply text-gray-900;
-}
+  .fg-primary {
+    @apply text-gray-900;
+  }
 
-[data-theme="dark"] .fg-primary {
-  @apply text-white;
-}
+  [data-theme="dark"] .fg-primary {
+    @apply text-white;
+  }
 
-.fg-primary-variant {
-  @apply text-gray-800;
-}
+  .fg-primary-variant {
+    @apply text-gray-800;
+  }
 
-[data-theme="dark"] .fg-primary-variant {
-  @apply text-gray-50;
-}
+  [data-theme="dark"] .fg-primary-variant {
+    @apply text-gray-50;
+  }
 
-.fg-secondary {
-  @apply text-gray-50;
-}
+  .fg-secondary {
+    @apply text-gray-50;
+  }
 
-[data-theme="dark"] .fg-secondary {
-  @apply text-gray-700;
-}
+  [data-theme="dark"] .fg-secondary {
+    @apply text-gray-700;
+  }
 
-.fg-secondary-variant {
-  @apply text-gray-100;
-}
+  .fg-secondary-variant {
+    @apply text-gray-100;
+  }
 
-[data-theme="dark"] .fg-secondary-variant {
-  @apply text-gray-600;
-}
+  [data-theme="dark"] .fg-secondary-variant {
+    @apply text-gray-600;
+  }
 
-.fg-subdued {
-  @apply text-gray-400;
-}
+  .fg-subdued {
+    @apply text-gray-400;
+  }
 
-[data-theme="dark"] .fg-subdued {
-  @apply text-gray-500;
+  [data-theme="dark"] .fg-subdued {
+    @apply text-gray-500;
+  }
 }

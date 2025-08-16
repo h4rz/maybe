@@ -1,14 +1,22 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@config "../../../config/tailwind.config.js";
+@import "tailwindcss";
+
+/* Essential utilities for Docker build compatibility */
+@utility gap-1 {
+  gap: 0.25rem;
+}
+
+@utility gap-2 {
+  gap: 0.5rem;
+}
 
 @import "../tailwind/maybe-design-system.css";
 
 @import "../tailwind/geist-font.css";
 @import "../tailwind/geist-mono-font.css";
 
-@plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/forms";
+@plugin "tailwindcss/typography";
+@plugin "tailwindcss/forms";
 
 @import "../tailwind/simonweb_pickr.css";
 

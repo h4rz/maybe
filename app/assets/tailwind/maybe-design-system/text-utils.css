@@ -1,39 +1,41 @@
-.text-primary {
-  @apply text-gray-900;
-}
+@layer utilities {
+  .text-primary {
+    @apply text-gray-900;
+  }
 
-[data-theme="dark"] .text-primary {
-  @apply text-white;
-}
+  [data-theme="dark"] .text-primary {
+    @apply text-white;
+  }
 
-.text-inverse {
-  @apply text-white;
-}
+  .text-inverse {
+    @apply text-white;
+  }
 
-[data-theme="dark"] .text-inverse {
-  @apply text-gray-900;
-}
+  [data-theme="dark"] .text-inverse {
+    @apply text-gray-900;
+  }
 
-.text-secondary {
-  @apply text-gray-500;
-}
+  .text-secondary {
+    @apply text-gray-500;
+  }
 
-[data-theme="dark"] .text-secondary {
-  @apply text-gray-400;
-}
+  [data-theme="dark"] .text-secondary {
+    @apply text-gray-400;
+  }
 
-.text-subdued {
-  @apply text-gray-400;
-}
+  .text-subdued {
+    @apply text-gray-400;
+  }
 
-[data-theme="dark"] .text-subdued {
-  @apply text-gray-600;
-}
+  [data-theme="dark"] .text-subdued {
+    @apply text-gray-600;
+  }
 
-.text-link {
-  @apply text-blue-600;
-}
+  .text-link {
+    @apply text-blue-600;
+  }
 
-[data-theme="dark"] .text-link {
-  @apply text-blue-500;
+  [data-theme="dark"] .text-link {
+    @apply text-blue-500;
+  }
 }
