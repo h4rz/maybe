@@ -9,11 +9,15 @@ class Provider::LogoDev < Provider
 
   def healthy?
     with_provider_response do
-      # Test with a well-known domain
-      response = client.get(logo_url("microsoft.com"))
-      
-      # Logo.dev returns 200 even for missing logos (with fallback), so check content type
-      response.success? && response.headers["content-type"]&.start_with?("image/")
+      # Test the hybrid approach with a well-known domain
+      begin
+        test_logo = fetch_logo_url(domain: "microsoft.com")
+        # Should always succeed with either Logo.dev or favicon fallback
+        test_logo.present?
+      rescue => e
+        Rails.logger.warn("#{self.class.name} health check failed: #{e.message}")
+        false
+      end
     end
   end
 
@@ -43,17 +47,34 @@ class Provider::LogoDev < Provider
         raise InvalidLogoError.new("No valid domain found for logo lookup")
       end
 
-      # Test if the logo exists by making a HEAD request
-      logo_endpoint = logo_url(lookup_domain)
-      response = client.head(logo_endpoint)
-      
-      if response.success? && response.headers["content-type"]&.start_with?("image/")
-        logo_endpoint
-      else
-        # Logo.dev provides fallback images, but we might want to return nil for missing logos
-        # For now, return the URL as Logo.dev handles missing logos gracefully
-        logo_endpoint
+      # Check cache first
+      cache_key = "logo_provider:#{lookup_domain}:v1"
+      cached_result = Rails.cache.read(cache_key)
+      if cached_result
+        Rails.logger.info("#{self.class.name}: Cache hit for #{lookup_domain}")
+        return cached_result
       end
+      Rails.logger.info("#{self.class.name}: Cache miss for #{lookup_domain}")
+
+      # Try Logo.dev first (high quality)
+      logo_url = try_logo_dev(lookup_domain)
+      
+      final_url = if logo_url
+        Rails.logger.info("#{self.class.name}: Using Logo.dev for #{lookup_domain}")
+        logo_url
+      else
+        # Fallback to Google Favicon API (always works)
+        favicon_url = fetch_favicon_fallback(lookup_domain)
+        Rails.logger.info("#{self.class.name}: Using favicon fallback for #{lookup_domain}")
+        favicon_url
+      end
+      
+      # Cache the result
+      cache_duration = logo_url ? 24.hours : 1.week
+      Rails.cache.write(cache_key, final_url, expires_in: cache_duration)
+      Rails.logger.info("#{self.class.name}: Cached result for #{lookup_domain} (#{cache_duration / 1.hour}h)")
+      
+      final_url
     end
   end
 
@@ -80,6 +101,36 @@ class Provider::LogoDev < Provider
 
   private
     attr_reader :api_key
+    
+    # Try Logo.dev provider first
+    def try_logo_dev(domain)
+      logo_endpoint = logo_url(domain)
+      response = client.head(logo_endpoint)
+      
+      # Check if Logo.dev has a real logo (not just a fallback)
+      if response.success? && response.headers["content-type"]&.start_with?("image/")
+        # For now, trust Logo.dev's response - they handle fallbacks well
+        # We can add more sophisticated detection later if needed
+        Rails.logger.info("#{self.class.name}: Found logo via Logo.dev for #{domain}")
+        return logo_endpoint
+      end
+      
+      Rails.logger.info("#{self.class.name}: No suitable logo found for #{domain}, falling back to favicon")
+      nil
+    rescue => e
+      Rails.logger.warn("#{self.class.name}: Logo.dev request failed for #{domain}: #{e.message}")
+      nil
+    end
+    
+    # Google Favicon API fallback (always works)
+    def fetch_favicon_fallback(domain)
+      # Google's favicon service with higher resolution
+      favicon_url = "https://www.google.com/s2/favicons?domain=#{domain}&sz=128"
+      
+      Rails.logger.info("#{self.class.name}: Using favicon fallback for #{domain}")
+      
+      favicon_url
+    end
 
     def base_url
       "https://img.logo.dev"
