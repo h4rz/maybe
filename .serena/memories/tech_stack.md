@@ -1,0 +1,13 @@
+Tech Stack:
+- Backend: Ruby on Rails (v7.2.2)
+- Database: PostgreSQL
+- Caching/Background Jobs: Redis
+- Frontend: Tailwind CSS, Stimulus.js, Turbo.js, ViewComponent
+- Build/Linting: Biome (for JS/TS)
+- Background Jobs: Sidekiq, Sidekiq-cron
+- AI Integration: ruby-openai
+- Financial Data Aggregation: Plaid
+- Payments: Stripe
+- Testing: Minitest, SimpleCov, VCR, Mocha, ClimateControl
+- Development Server: Foreman (via Procfile.dev)
+- Hosting: Docker

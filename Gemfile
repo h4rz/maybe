@@ -98,6 +98,7 @@ group :development do
   gem "hotwire-livereload"
   gem "letter_opener"
   gem "ruby-lsp-rails"
+  gem "solargraph"
   gem "web-console"
   gem "faker"
   gem "benchmark-ips"
